@@ -14,11 +14,12 @@ class Cv extends Component {
       homeAddress: "123 Main St",
       city: "Cityville, ST",
       postalCode: "12345",
-      educationEntries: [],
+      education: [],
     };
 
     this.handleClick = this.handleClick.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
+    this.handleForm = this.handleForm.bind(this);
   }
 
   handleClick(e) {
@@ -27,20 +28,30 @@ class Cv extends Component {
     this.setState({ [field]: "form" });
   }
 
-  handleSubmit(e) {
+  handleEnter(e) {
     if (e.key === "Enter") {
       const field = e.target;
 
-      if (
-        field.name === "education" ||
-        field.name === "experience" ||
-        field.name === "skills"
-      ) {
-        // Push to relevant array
-      }
-
       this.setState({ [field.name]: field.value });
     }
+  }
+
+  handleForm(form) {
+    const formData = new FormData(form);
+    const field = form.dataset.field;
+    let entry;
+
+    if (field === "education") {
+      entry = {
+        name: formData.get("name"),
+        startYear: formData.get("startYear"),
+        endYear: formData.get("endYear"),
+        degree: formData.get("degree"),
+        gpa: formData.get("gpa"),
+      };
+    }
+
+    this.setState({ [field]: [...this.state[field], entry] });
   }
 
   render() {
@@ -50,20 +61,20 @@ class Cv extends Component {
           firstName={this.state.firstName}
           lastName={this.state.lastName}
           handleClick={this.handleClick}
-          handleSubmit={this.handleSubmit}
+          handleEnter={this.handleSubmit}
         />
         <Address
           homeAddress={this.state.homeAddress}
           city={this.state.city}
           postalCode={this.state.postalCode}
           handleClick={this.handleClick}
-          handleSubmit={this.handleSubmit}
+          handleEnter={this.handleSubmit}
         />
         <hr />
         <h2>Education</h2>
         <Education
-          educationEntries={this.state.educationEntries}
-          handleSubmit={this.handleSubmit}
+          education={this.state.education}
+          handleForm={this.handleForm}
         />
       </div>
     );

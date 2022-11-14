@@ -3,7 +3,11 @@ import React, { Component } from "react";
 class EducationForm extends Component {
   render() {
     return (
-      <form className="education-form">
+      <form
+        className="education-form"
+        data-field="education"
+        onSubmit={this.props.handleSubmit}
+      >
         <label htmlFor="education[name]">University Name</label>
         <input
           type="text"
@@ -55,9 +59,7 @@ class EducationForm extends Component {
           >
             Cancel
           </button>
-          <button type="button" className="button save">
-            Save
-          </button>
+          <button className="button save">Save</button>
         </div>
       </form>
     );

@@ -33,7 +33,7 @@ class Name extends Component {
           type="text"
           name="firstName"
           placeholder="First Name"
-          onKeyDown={this.props.handleSubmit}
+          onKeyDown={this.props.handleEnter}
           autoFocus
         />
       );
@@ -45,7 +45,7 @@ class Name extends Component {
           type="text"
           name="lastName"
           placeholder="Last Name"
-          onKeyDown={this.props.handleSubmit}
+          onKeyDown={this.props.handleEnter}
           autoFocus
         />
       );

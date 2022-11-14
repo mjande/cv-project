@@ -9,24 +9,34 @@ class Education extends Component {
     this.state = { form: false };
 
     this.showForm = this.showForm.bind(this);
-    this.hideForm = this.hideForm.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   showForm() {
     this.setState({ form: true });
   }
 
-  hideForm() {
+  handleSubmit(e) {
+    console.log(e.target);
+    e.preventDefault();
+
+    this.props.handleForm(e.target);
+
     this.setState({ form: false });
   }
 
   render() {
     if (this.state.form) {
-      return <EducationForm hideForm={this.hideForm} />;
+      return (
+        <EducationForm
+          hideForm={this.hideForm}
+          handleSubmit={this.handleSubmit}
+        />
+      );
     } else {
       return (
         <div>
-          {this.props.educationEntries.forEach((educationEntry) => {
+          {this.props.education.forEach((educationEntry) => {
             console.log("Render entry here"); // <EducationEntry />
           })}
           <button className="button" onClick={this.showForm}>
