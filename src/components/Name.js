@@ -8,6 +8,7 @@ class Name extends Component {
         <button
           type="button"
           className="field firstName"
+          id="first-name"
           onClick={this.props.handleClick}
           data-field="firstName"
         >

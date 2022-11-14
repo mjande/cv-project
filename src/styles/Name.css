@@ -1,7 +1,7 @@
-.firstName,
-.lastName,
+button.firstName,
+button.lastName,
 .Name input {
-  font-weight: semibold;
+  font-weight: 600;
   font-size: 2rem;
   margin-right: 1rem;
 }

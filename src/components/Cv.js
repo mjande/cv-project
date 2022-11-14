@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Name from "./Name";
 import Address from "./Address";
+import Education from "./education/Education";
 import "../styles/Cv.css";
 
 class Cv extends Component {
@@ -13,6 +14,7 @@ class Cv extends Component {
       homeAddress: "123 Main St",
       city: "Cityville, ST",
       postalCode: "12345",
+      educationEntries: [],
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -28,6 +30,14 @@ class Cv extends Component {
   handleSubmit(e) {
     if (e.key === "Enter") {
       const field = e.target;
+
+      if (
+        field.name === "education" ||
+        field.name === "experience" ||
+        field.name === "skills"
+      ) {
+        // Push to relevant array
+      }
 
       this.setState({ [field.name]: field.value });
     }
@@ -50,6 +60,11 @@ class Cv extends Component {
           handleSubmit={this.handleSubmit}
         />
         <hr />
+        <h2>Education</h2>
+        <Education
+          educationEntries={this.state.educationEntries}
+          handleSubmit={this.handleSubmit}
+        />
       </div>
     );
   }

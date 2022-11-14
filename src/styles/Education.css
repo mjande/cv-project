@@ -1,0 +1,29 @@
+.education-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  align-self: center;
+  gap: 0.5rem;
+}
+
+.education-form input {
+  width: 100%;
+}
+
+.years {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.education-form .year {
+  width: 4rem;
+  display: block;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
