@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Name from "./Name";
+import Address from "./Address";
 import "../styles/Cv.css";
 
 class Cv extends Component {
@@ -9,6 +10,9 @@ class Cv extends Component {
     this.state = {
       firstName: "First Name",
       lastName: "Last Name",
+      homeAddress: "123 Main St",
+      city: "Cityville, ST",
+      postalCode: "12345",
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -35,6 +39,13 @@ class Cv extends Component {
         <Name
           firstName={this.state.firstName}
           lastName={this.state.lastName}
+          handleClick={this.handleClick}
+          handleSubmit={this.handleSubmit}
+        />
+        <Address
+          homeAddress={this.state.homeAddress}
+          city={this.state.city}
+          postalCode={this.state.postalCode}
           handleClick={this.handleClick}
           handleSubmit={this.handleSubmit}
         />

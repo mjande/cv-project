@@ -3,20 +3,8 @@ import "../styles/Name.css";
 
 class Name extends Component {
   render() {
-    let firstNameElement;
-    let lastNameElement;
-
-    if (this.props.firstName === "form") {
-      firstNameElement = (
-        <input
-          type="text"
-          name="firstName"
-          placeholder="First Name"
-          onKeyDown={this.props.handleSubmit}
-        />
-      );
-    } else {
-      firstNameElement = (
+    let nameElements = {
+      firstName: (
         <button
           type="button"
           className="field firstName"
@@ -25,20 +13,8 @@ class Name extends Component {
         >
           {this.props.firstName}
         </button>
-      );
-    }
-
-    if (this.props.lastName === "form") {
-      lastNameElement = (
-        <input
-          type="text"
-          name="lastName"
-          placeholder="Last Name"
-          onKeyDown={this.props.handleSubmit}
-        />
-      );
-    } else {
-      lastNameElement = (
+      ),
+      lastName: (
         <button
           type="button"
           className="field lastName"
@@ -47,13 +23,37 @@ class Name extends Component {
         >
           {this.props.lastName}
         </button>
+      ),
+    };
+
+    if (this.props.firstName === "form") {
+      nameElements.firstName = (
+        <input
+          type="text"
+          name="firstName"
+          placeholder="First Name"
+          onKeyDown={this.props.handleSubmit}
+          autoFocus
+        />
+      );
+    }
+
+    if (this.props.lastName === "form") {
+      nameElements.lastName = (
+        <input
+          type="text"
+          name="lastName"
+          placeholder="Last Name"
+          onKeyDown={this.props.handleSubmit}
+          autoFocus
+        />
       );
     }
 
     return (
       <div className="Name">
-        {firstNameElement}
-        {lastNameElement}
+        {nameElements.firstName}
+        {nameElements.lastName}
       </div>
     );
   }
