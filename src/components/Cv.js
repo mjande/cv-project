@@ -3,6 +3,7 @@ import Name from "./Name";
 import Address from "./Address";
 import Education from "./education/Education";
 import Experience from "./experience/Experience";
+import Skills from "./skills/Skills";
 import "../styles/Cv.css";
 
 class Cv extends Component {
@@ -17,6 +18,7 @@ class Cv extends Component {
       postalCode: "12345",
       education: [],
       experience: [],
+      skills: [],
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -60,6 +62,8 @@ class Cv extends Component {
         startYear: formData.get("startYear"),
         endYear: formData.get("endYear"),
       };
+    } else if (field === "skills") {
+      entry = formData.get("name");
     }
 
     this.setState({ [field]: [...this.state[field], entry] });
@@ -114,6 +118,11 @@ class Cv extends Component {
         <hr />
 
         <h2>Skills</h2>
+        <Skills
+          skills={this.state.skills}
+          handleForm={this.handleForm}
+          handleDelete={this.handleDelete}
+        />
       </div>
     );
   }
