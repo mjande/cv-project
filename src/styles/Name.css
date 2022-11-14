@@ -1,0 +1,6 @@
+.firstName,
+.lastName {
+  font-weight: semibold;
+  font-size: 2rem;
+  margin-right: 1rem;
+}
