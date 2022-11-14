@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import EducationForm from "./EducationForm";
+import EducationEntry from "./EducationEntry";
+
+import uniqid from "uniqid";
 import "../../styles/Education.css";
 
 class Education extends Component {
@@ -9,6 +12,7 @@ class Education extends Component {
     this.state = { form: false };
 
     this.showForm = this.showForm.bind(this);
+    this.hideForm = this.hideForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -16,8 +20,11 @@ class Education extends Component {
     this.setState({ form: true });
   }
 
+  hideForm() {
+    this.setState({ form: false });
+  }
+
   handleSubmit(e) {
-    console.log(e.target);
     e.preventDefault();
 
     this.props.handleForm(e.target);
@@ -35,9 +42,19 @@ class Education extends Component {
       );
     } else {
       return (
-        <div>
-          {this.props.education.forEach((educationEntry) => {
-            console.log("Render entry here"); // <EducationEntry />
+        <div className="education-entries">
+          {this.props.education.map((entry) => {
+            return (
+              <EducationEntry
+                key={uniqid()}
+                name={entry.name}
+                startYear={entry.startYear}
+                endYear={entry.endYear}
+                degree={entry.degree}
+                gpa={entry.gpa}
+                handleDelete={this.props.handleDelete}
+              />
+            );
           })}
           <button className="button" onClick={this.showForm}>
             Add +

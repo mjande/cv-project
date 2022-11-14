@@ -20,6 +20,7 @@ class Cv extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
     this.handleForm = this.handleForm.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleClick(e) {
@@ -54,6 +55,20 @@ class Cv extends Component {
     this.setState({ [field]: [...this.state[field], entry] });
   }
 
+  handleDelete(e) {
+    const field = e.target.dataset.field;
+    const index = this.state.education.findIndex((entry) => {
+      return entry.degree === e.target.dataset.degree;
+    });
+
+    this.setState({
+      [field]: [
+        ...this.state[field].slice(0, index),
+        ...this.state[field].slice(index + 1),
+      ],
+    });
+  }
+
   render() {
     return (
       <div className="Cv">
@@ -75,6 +90,7 @@ class Cv extends Component {
         <Education
           education={this.state.education}
           handleForm={this.handleForm}
+          handleDelete={this.handleDelete}
         />
       </div>
     );

@@ -34,7 +34,7 @@ class EducationForm extends Component {
               type="text"
               className="year"
               id="education[end-year]"
-              name="end-year"
+              name="endYear"
               placeholder="2022"
             />
           </div>

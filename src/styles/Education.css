@@ -27,3 +27,15 @@
   display: flex;
   justify-content: space-around;
 }
+
+.education-entries {
+  width: 100%;
+}
+
+.entry {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
