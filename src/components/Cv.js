@@ -49,6 +49,7 @@ class Cv extends Component {
           handleClick={this.handleClick}
           handleSubmit={this.handleSubmit}
         />
+        <hr />
       </div>
     );
   }
