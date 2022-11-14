@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Name from "./Name";
 import Address from "./Address";
 import Education from "./education/Education";
+import Experience from "./experience/Experience";
 import "../styles/Cv.css";
 
 class Cv extends Component {
@@ -15,6 +16,7 @@ class Cv extends Component {
       city: "Cityville, ST",
       postalCode: "12345",
       education: [],
+      experience: [],
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -50,6 +52,14 @@ class Cv extends Component {
         degree: formData.get("degree"),
         gpa: formData.get("gpa"),
       };
+    } else if (field === "experience") {
+      entry = {
+        role: formData.get("role"),
+        company: formData.get("company"),
+        city: formData.get("city"),
+        startYear: formData.get("startYear"),
+        endYear: formData.get("endYear"),
+      };
     }
 
     this.setState({ [field]: [...this.state[field], entry] });
@@ -57,7 +67,7 @@ class Cv extends Component {
 
   handleDelete(e) {
     const field = e.target.dataset.field;
-    const index = this.state.education.findIndex((entry) => {
+    const index = this.state[field].findIndex((entry) => {
       return entry.degree === e.target.dataset.degree;
     });
 
@@ -86,12 +96,24 @@ class Cv extends Component {
           handleEnter={this.handleSubmit}
         />
         <hr />
+
         <h2>Education</h2>
         <Education
           education={this.state.education}
           handleForm={this.handleForm}
           handleDelete={this.handleDelete}
         />
+        <hr />
+
+        <h2>Work Experience</h2>
+        <Experience
+          experience={this.state.experience}
+          handleForm={this.handleForm}
+          handleDelete={this.handleDelete}
+        />
+        <hr />
+
+        <h2>Skills</h2>
       </div>
     );
   }
