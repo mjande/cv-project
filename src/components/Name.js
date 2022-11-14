@@ -2,31 +2,52 @@ import React, { Component } from "react";
 import "../styles/Name.css";
 
 class Name extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { form: false };
-  }
-
   render() {
-    let firstName = this.props.firstName || "First Name";
-    let lastName = this.props.lastName || "Last Name";
     let firstNameElement;
     let lastNameElement;
 
-    if (this.state.form === "firstName") {
-      firstNameElement = <input type="text" name="first-name"></input>;
+    if (this.props.firstName === "form") {
+      firstNameElement = (
+        <input
+          type="text"
+          name="firstName"
+          placeholder="First Name"
+          onKeyDown={this.props.handleSubmit}
+        />
+      );
     } else {
       firstNameElement = (
-        <button type="button" className="firstName field">
-          {firstName}
+        <button
+          type="button"
+          className="field firstName"
+          onClick={this.props.handleClick}
+          data-field="firstName"
+        >
+          {this.props.firstName}
         </button>
       );
     }
 
-    if (this.state.form === "lastName") {
-      lastNameElement = <input type="text" name="last-name"></input>;
+    if (this.props.lastName === "form") {
+      lastNameElement = (
+        <input
+          type="text"
+          name="lastName"
+          placeholder="Last Name"
+          onKeyDown={this.props.handleSubmit}
+        />
+      );
     } else {
-      lastNameElement = <button className="lastName field">{lastName}</button>;
+      lastNameElement = (
+        <button
+          type="button"
+          className="field lastName"
+          onClick={this.props.handleClick}
+          data-field="lastName"
+        >
+          {this.props.lastName}
+        </button>
+      );
     }
 
     return (
