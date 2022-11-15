@@ -86,6 +86,8 @@ class Cv extends Component {
   render() {
     return (
       <div className="Cv">
+        <Information />
+        
         <Name
           firstName={this.state.firstName}
           lastName={this.state.lastName}
