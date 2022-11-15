@@ -1,63 +1,80 @@
-import React, { Component } from "react";
-import "../styles/Name.css";
+import React, { Component, useState } from "react";
+import "../../styles/Name.css";
 
-class Name extends Component {
-  render() {
-    let nameElements = {
-      firstName: (
-        <button
-          type="button"
-          className="field firstName"
-          id="first-name"
-          onClick={this.props.handleClick}
-          data-field="firstName"
-        >
-          {this.props.firstName}
-        </button>
-      ),
-      lastName: (
-        <button
-          type="button"
-          className="field lastName"
-          onClick={this.props.handleClick}
-          data-field="lastName"
-        >
-          {this.props.lastName}
-        </button>
-      ),
-    };
+function Name(props) {
+  const [firstName, setFirstName] = useState("First Name");
+  const [lastName, setLastName] = useState("Last Name");
+  const [firstNameForm, setFirstNameForm] = useState(false);
+  const [lastNameForm, setLastNameForm] = useState(false);
 
-    if (this.props.firstName === "form") {
-      nameElements.firstName = (
-        <input
-          type="text"
-          name="firstName"
-          placeholder="First Name"
-          onKeyDown={this.props.handleEnter}
-          autoFocus
-        />
-      );
+  let firstNameElement;
+  let lastNameElement;
+
+  function handleKeyDown(e) {
+    if (e.key === "Enter") {
+      if (e.target.name === "firstName") {
+        setFirstName(e.target.value);
+        setFirstNameForm(false);
+      } else if (e.target.name === "lastName") {
+        setLastName(e.target.value);
+        setLastNameForm(false);
+      }
     }
+  }
 
-    if (this.props.lastName === "form") {
-      nameElements.lastName = (
-        <input
-          type="text"
-          name="lastName"
-          placeholder="Last Name"
-          onKeyDown={this.props.handleEnter}
-          autoFocus
-        />
-      );
-    }
-
-    return (
-      <div className="Name">
-        {nameElements.firstName}
-        {nameElements.lastName}
-      </div>
+  if (firstNameForm) {
+    firstNameElement = (
+      <input
+        type="text"
+        name="firstName"
+        placeholder="First Name"
+        onKeyDown={handleKeyDown}
+        autoFocus
+      />
+    );
+  } else {
+    firstNameElement = (
+      <button
+        type="button"
+        className="field firstName"
+        id="first-name"
+        onClick={() => setFirstNameForm(true)}
+        data-field="firstName"
+      >
+        {firstName}
+      </button>
     );
   }
+
+  if (lastNameForm) {
+    lastNameElement = (
+      <input
+        type="text"
+        name="lastName"
+        placeholder="Last Name"
+        onKeyDown={handleKeyDown}
+        autoFocus
+      />
+    );
+  } else {
+    lastNameElement = (
+      <button
+        type="button"
+        className="field lastName"
+        onClick={() => setLastNameForm(true)}
+        data-field="lastName"
+      >
+        {lastName}
+      </button>
+    );
+  }
+
+  return (
+    <div>
+      {firstNameElement}
+      {lastNameElement}
+    </div>
+  );
 }
 
 export default Name;

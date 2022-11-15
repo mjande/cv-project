@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import Name from "./Name";
-import Address from "./Address";
+import Information from './information/Information';
 import Education from "./education/Education";
 import Experience from "./experience/Experience";
 import Skills from "./skills/Skills";
@@ -87,20 +86,6 @@ class Cv extends Component {
     return (
       <div className="Cv">
         <Information />
-        
-        <Name
-          firstName={this.state.firstName}
-          lastName={this.state.lastName}
-          handleClick={this.handleClick}
-          handleEnter={this.handleSubmit}
-        />
-        <Address
-          homeAddress={this.state.homeAddress}
-          city={this.state.city}
-          postalCode={this.state.postalCode}
-          handleClick={this.handleClick}
-          handleEnter={this.handleSubmit}
-        />
         <hr />
 
         <h2>Education</h2>
