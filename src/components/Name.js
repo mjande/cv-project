@@ -1,7 +1,7 @@
-import React, { Component, useState } from "react";
-import "../../styles/Name.css";
+import React, { useState } from "react";
+import "../styles/Name.css";
 
-function Name(props) {
+function Name() {
   const [firstName, setFirstName] = useState("First Name");
   const [lastName, setLastName] = useState("Last Name");
   const [firstNameForm, setFirstNameForm] = useState(false);
@@ -27,7 +27,7 @@ function Name(props) {
       <input
         type="text"
         name="firstName"
-        placeholder="First Name"
+        placeholder={firstName}
         onKeyDown={handleKeyDown}
         autoFocus
       />
@@ -51,7 +51,7 @@ function Name(props) {
       <input
         type="text"
         name="lastName"
-        placeholder="Last Name"
+        placeholder={lastName}
         onKeyDown={handleKeyDown}
         autoFocus
       />
