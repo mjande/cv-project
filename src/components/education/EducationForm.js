@@ -1,18 +1,11 @@
 import React from "react";
 
 function EducationForm(props) {
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    const formData = new FormData(e.target);
-    props.addEntry(Object.fromEntries(formData));
-  }
-
   return (
     <form
       className="education-form"
       data-field="education"
-      onSubmit={handleSubmit}
+      onSubmit={props.addEntry}
     >
       <label htmlFor="education[name]">University Name</label>
       <input

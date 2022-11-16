@@ -1,29 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
 
-class SkillForm extends Component {
-  render() {
-    return (
-      <form
-        className="skill-form"
-        data-field="skills"
-        onSubmit={this.props.handleSubmit}
-      >
-        <label htmlFor="skill[name]">New Skill</label>
-        <input type="text" id="skill[name]" name="name" placeholder="React" />
+function SkillForm(props) {
+  return (
+    <form className="skill-form" data-field="skills" onSubmit={props.addEntry}>
+      <label htmlFor="skill[name]">New Skill</label>
+      <input type="text" id="skill[name]" name="name" placeholder="React" />
 
-        <div className="buttons">
-          <button
-            type="button"
-            className="button cancel"
-            onClick={this.props.hideForm}
-          >
-            Cancel
-          </button>
-          <button className="button save">Save</button>
-        </div>
-      </form>
-    );
-  }
+      <div className="buttons">
+        <button
+          type="button"
+          className="button cancel"
+          onClick={props.hideForm}
+        >
+          Cancel
+        </button>
+        <button className="button save">Save</button>
+      </div>
+    </form>
+  );
 }
 
 export default SkillForm;

@@ -9,8 +9,11 @@ function Education() {
   const [entries, setEntries] = useState([]);
   const [form, setForm] = useState(false);
 
-  function addEntry(entry) {
-    setEntries([...entries, entry]);
+  function addEntry(e) {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    setEntries([...entries, Object.fromEntries(formData)]);
     setForm(false);
   }
 

@@ -1,62 +1,51 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import SkillForm from "./SkillForm";
 import SkillEntry from "./SkillEntry";
 
 import "../../styles/Skills.css";
 import uniqid from "uniqid";
 
-class Skills extends Component {
-  constructor(props) {
-    super(props);
+function Skills() {
+  const [entries, setEntries] = useState([]);
+  const [form, setForm] = useState(false);
 
-    this.state = { form: false };
-
-    this.showForm = this.showForm.bind(this);
-    this.hideForm = this.hideForm.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  showForm() {
-    this.setState({ form: true });
-  }
-
-  hideForm() {
-    this.setState({ form: false });
-  }
-
-  handleSubmit(e) {
+  function addEntry(e) {
     e.preventDefault();
 
-    this.props.handleForm(e.target);
-
-    this.setState({ form: false });
+    const formData = new FormData(e.target);
+    const skill = formData.get("name");
+    setEntries([...entries, skill]);
+    setForm(false);
   }
 
-  render() {
-    if (this.state.form) {
-      return (
-        <SkillForm hideForm={this.hideForm} handleSubmit={this.handleSubmit} />
-      );
-    } else {
-      return (
-        <div className="skills-entries">
-          <ul>
-            {this.props.skills.map((entry) => {
-              return (
-                <SkillEntry
-                  key={uniqid()}
-                  name={entry}
-                  handleDelete={this.props.handleDelete}
-                />
-              );
-            })}
-          </ul>
-          <button className="button" onClick={this.showForm}>
-            Add +
-          </button>
-        </div>
-      );
-    }
+  function deleteEntry(e) {
+    const skill = e.target.dataset.skill;
+    const index = entries.findIndex((entry) => entry === skill);
+
+    setEntries([...entries.slice(0, index), ...entries.slice(index + 1)]);
+  }
+
+  if (form) {
+    return <SkillForm hideForm={() => setForm(false)} addEntry={addEntry} />;
+  } else {
+    return (
+      <div className="skills-entries">
+        <ul>
+          {entries.map((entry) => {
+            return (
+              <SkillEntry
+                key={uniqid()}
+                name={entry}
+                deleteEntry={deleteEntry}
+              />
+            );
+          })}
+        </ul>
+        <button className="button" onClick={() => setForm(true)}>
+          Add +
+        </button>
+      </div>
+    );
   }
 }
 
