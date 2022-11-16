@@ -1,28 +1,26 @@
-import React, { Component } from "react";
+import React from "react";
 
-class EducationEntry extends Component {
-  render() {
-    return (
-      <article className="entry">
-        <div className="education[name]">
-          <strong>{this.props.name}</strong>
-        </div>
-        <div className="education[degree]">{this.props.degree}</div>
-        <div className="education[gpa]">{this.props.gpa}</div>
-        <div className="education[years]">
-          {this.props.startYear} - {this.props.endYear}
-        </div>
-        <button
-          type="button"
-          onClick={this.props.handleDelete}
-          data-degree={this.props.degree}
-          data-field="education"
-        >
-          Delete
-        </button>
-      </article>
-    );
-  }
+function EducationEntry(props) {
+  return (
+    <article className="entry">
+      <div className="education[name]">
+        <strong>{props.name}</strong>
+      </div>
+      <div className="education[degree]">{props.degree}</div>
+      <div className="education[gpa]">{props.gpa}</div>
+      <div className="education[years]">
+        {props.startYear} - {props.endYear}
+      </div>
+      <button
+        type="button"
+        onClick={props.deleteEntry}
+        data-degree={props.degree}
+        data-field="education"
+      >
+        Delete
+      </button>
+    </article>
+  );
 }
 
 export default EducationEntry;
